@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
+	
 	<groupId>com.example</groupId>
 	<artifactId>ecsite-develop-learning</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -26,6 +26,27 @@
 	</properties>
 
 	<dependencies>
+		<!-- lombokを使用するためのライブラリ？
+			参考：https://qiita.com/tmasu/items/03dd1a511a2629663858 
+			追記：ダメだった。変わらず　
+			追記：できた。　lombok.jarの場所変更、SprintToolSuite4.iniの中身追記
+			参考：https://blog.frevo-works.co.jp/entry/2018/09/26/132232
+		<dependency>
+	    	<groupId>org.projectlombok</groupId>
+	    	<artifactId>lombok</artifactId>
+	    	<version>1.16.22</version>
+	    	<scope>provided</scope>
+    	</dependency>
+    	-->
+    	
+	
+		<!-- SpringBootでDataJpaを使用できる様にする設定　（これがなく＠Entityなどが使えなくなっていた）
+			参考：https://qiita.com/maekun/items/4c390ff3cf84d8a177a3 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
