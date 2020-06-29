@@ -1,10 +1,58 @@
 package com.example.ecsitedeveloplearning.ec.shop.model;
 
-import lombok.Data;
+import java.util.Date;
 
-@Data
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+//↓<Form enctype="multipart/form-data">でファイルアップロードしたのをMultipartFileでなんかするやつ
+//https://qiita.com/nvtomo1029/items/316c5e8fe5d0cd92339c
+import org.springframework.web.multipart.MultipartFile;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data	//@Getter, @Setter, @ToString, @EqualsAndHashCode, @RequiredArgsConstructorを付与したのと同じ状態となる
+@Entity
+@Table(name = "products")
 public class Product {
 	
-	// Databaseの Productsテーブルと連携するため Entity設定必要
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "name")
+	@Getter
+	private String name;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category categoryId;
+	
+	@Column(name = "price")
+	private Integer price;
+	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "image_path")
+	private String imagePath;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created", nullable = false)
+	private Date created;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated", nullable = true)
+	private Date updated;
 
 }
